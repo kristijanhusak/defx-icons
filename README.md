@@ -2,6 +2,7 @@
 
 Custom implementation of [vim-devicons](https://github.com/ryanoasis/vim-devicons) for [defx.nvim](https://github.com/Shougo/defx.nvim).
 
+![screenshot from 2018-11-22 23-39-41](https://user-images.githubusercontent.com/1782860/48923552-eeed0b80-eeaf-11e8-98e8-8f4e7ec85194.png)
 
 ## Usage
 ```vimL
