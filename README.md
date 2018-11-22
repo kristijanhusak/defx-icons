@@ -24,3 +24,8 @@ let g:defx_icons_directory_symlink_icon = ''
 ```
 
 Note: Syntax highlighting can cause some performance issues in defx window. Just disable it with the `let g:defx_icons_enable_syntax_highlight = 0`
+
+## Thanks to
+
+* [vim-devicons](https://github.com/ryanoasis/vim-devicons) for icons
+* [vim-nerdtree-syntax-highlight](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight) for colors
