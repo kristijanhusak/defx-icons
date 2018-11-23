@@ -90,22 +90,20 @@ class Column(Base):
         ))
 
         for pattern, pattern_data in self.opts['pattern_matches'].items():
+            pattern_text = re.sub('[^A-Za-z]', '', pattern)
             self.vim.command((
                 'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-            ).format(
-                self.syntax_name, pattern_data['icon'], pattern_data['icon']))
+            ).format(self.syntax_name, pattern_text, pattern_data['icon']))
             self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
-                self.syntax_name, pattern_data['icon'], pattern_data['color']
-            ))
+                self.syntax_name, pattern_text, pattern_data['color']))
 
         for exact_file, exact_match_data in self.opts['exact_matches'].items():
+            file_text = re.sub('[^A-Za-z]', '', exact_file)
             self.vim.command((
                 'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-            ).format(self.syntax_name, exact_file,
-                     exact_match_data['icon']))
+            ).format(self.syntax_name, file_text, exact_match_data['icon']))
             self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
-                self.syntax_name, exact_file, exact_match_data['color']
-            ))
+                self.syntax_name, file_text, exact_match_data['color']))
 
         for ext, ext_data in self.opts['extensions'].items():
             self.vim.command((
