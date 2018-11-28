@@ -5,7 +5,7 @@ endif
 let g:loaded_defx_icons = 1
 
 let s:enable_syntax_highlight = get(g:, 'defx_icons_enable_syntax_highlight', 1)
-let s:column_length = get(g:, 'defx_icons_column_length', 2)
+let s:column_length = get(g:, 'defx_icons_column_length', 1)
 let s:parent_icon = get(g:, 'defx_icons_parent_icon', '')
 let s:directory_icon = get(g:, 'defx_icons_directory_icon', '')
 let s:mark_icon = get(g: , 'defx_icons_mark_icon', '*')
