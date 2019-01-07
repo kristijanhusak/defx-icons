@@ -20,6 +20,7 @@ class Column(Base):
 
     def get(self, context: Context, candidate: dict) -> str:
         path: Path = candidate['action__path']
+        filename = path.name.lower()
         if 'mark' not in context.columns and candidate['is_selected']:
             return self.icon(self.opts['mark_icon'])
 
@@ -27,13 +28,15 @@ class Column(Base):
             return self.icon(self.opts['parent_icon'])
 
         if candidate['is_directory']:
+            if filename in self.opts['exact_dir_matches']:
+                return self.icon(self.opts['exact_dir_matches'][filename]['icon'])
+
             if path.is_symlink():
                 return self.icon(self.opts['directory_symlink_icon'])
 
             return self.icon(self.opts['directory_icon'])
 
         ext = path.suffix[1:].lower()
-        filename = path.name.lower()
 
         for pattern, pattern_data in self.opts['pattern_matches'].items():
             if re.search(pattern, filename) is not None:
@@ -104,6 +107,14 @@ class Column(Base):
             ).format(self.syntax_name, file_text, exact_match_data['icon']))
             self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
                 self.syntax_name, file_text, exact_match_data['color']))
+
+        for exact_dir, exact_dir_match_data in self.opts['exact_dir_matches'].items():
+            dir_text = re.sub('[^A-Za-z]', '', exact_dir)
+            self.vim.command((
+                'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
+            ).format(self.syntax_name, dir_text, exact_dir_match_data['icon']))
+            self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
+                self.syntax_name, dir_text, exact_dir_match_data['color']))
 
         for ext, ext_data in self.opts['extensions'].items():
             self.vim.command((
