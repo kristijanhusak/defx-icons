@@ -56,70 +56,36 @@ class Column(Base):
     def icon(self, icon: str) -> str:
         return format(icon, f'<{self.opts["column_length"]}')
 
-    def highlight(self) -> None:
+    def syn_item(self, name, opt_name, hi_group_name) -> None:
+        self.vim.command(f'silent! syntax clear {self.syntax_name}_{name}')
         self.vim.command((
             'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-        ).format(self.syntax_name, 'icon_mark', self.opts['mark_icon']))
-        self.vim.command('highlight default link {0}_{1} Statement'.format(
-            self.syntax_name, 'icon_mark'
+        ).format(self.syntax_name, name, self.opts[opt_name]))
+        self.vim.command('highlight default link {0}_{1} {2}'.format(
+            self.syntax_name, name, hi_group_name
         ))
+
+    def syn_list(self, opt) -> None:
+        for name, opts in self.opts[opt].items():
+            text = re.sub('[^A-Za-z]', '', name)
+            self.vim.command(f'silent! syntax clear {self.syntax_name}_{text}')
+            self.vim.command((
+                'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
+            ).format(self.syntax_name, text, opts['icon']))
+            self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
+                self.syntax_name, text, opts['color']))
+
+    def highlight(self) -> None:
+        self.syn_item('icon_mark', 'mark_icon', 'Statement')
 
         if not self.opts['enable_syntax_highlight']:
             return
 
-        self.vim.command((
-            'syntax match {0}_{1} /[{2}]/ contained containedin={0}').format(
-                self.syntax_name, 'directory', self.opts['directory_icon']
-            ))
-        self.vim.command('highlight default link {0}_{1} Directory'.format(
-            self.syntax_name, 'directory'
-        ))
+        self.syn_item('directory', 'directory_icon', 'Directory')
+        self.syn_item('parent_directory', 'parent_icon', 'Directory')
+        self.syn_item('symlink_directory', 'directory_symlink_icon', 'Directory')
 
-        self.vim.command((
-            'syntax match {0}_{1} /[{2}]/ contained containedin={0}').format(
-                self.syntax_name, 'parent_directory', self.opts['parent_icon']
-            ))
-        self.vim.command('highlight default link {0}_{1} Directory'.format(
-            self.syntax_name, 'parent_directory'
-        ))
-
-        self.vim.command((
-            'syntax match {0}_{1} /[{2}]/ contained containedin={0}').format(
-                self.syntax_name, 'symlink_directory',
-                self.opts['directory_symlink_icon']
-            ))
-        self.vim.command('highlight default link {0}_{1} Directory'.format(
-            self.syntax_name, 'symlink_directory'
-        ))
-
-        for pattern, pattern_data in self.opts['pattern_matches'].items():
-            pattern_text = re.sub('[^A-Za-z]', '', pattern)
-            self.vim.command((
-                'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-            ).format(self.syntax_name, pattern_text, pattern_data['icon']))
-            self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
-                self.syntax_name, pattern_text, pattern_data['color']))
-
-        for exact_file, exact_match_data in self.opts['exact_matches'].items():
-            file_text = re.sub('[^A-Za-z]', '', exact_file)
-            self.vim.command((
-                'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-            ).format(self.syntax_name, file_text, exact_match_data['icon']))
-            self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
-                self.syntax_name, file_text, exact_match_data['color']))
-
-        for exact_dir, exact_dir_match_data in self.opts['exact_dir_matches'].items():
-            dir_text = re.sub('[^A-Za-z]', '', exact_dir)
-            self.vim.command((
-                'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-            ).format(self.syntax_name, dir_text, exact_dir_match_data['icon']))
-            self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
-                self.syntax_name, dir_text, exact_dir_match_data['color']))
-
-        for ext, ext_data in self.opts['extensions'].items():
-            self.vim.command((
-                'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-            ).format(self.syntax_name, ext, ext_data['icon']))
-            self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
-                self.syntax_name, ext, ext_data['color']
-            ))
+        self.syn_list('pattern_matches')
+        self.syn_list('exact_matches')
+        self.syn_list('exact_dir_matches')
+        self.syn_list('extensions')
