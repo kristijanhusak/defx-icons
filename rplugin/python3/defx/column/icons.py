@@ -20,7 +20,7 @@ class Column(Base):
 
     def get(self, context: Context, candidate: dict) -> str:
         path: Path = candidate['action__path']
-        filename = path.name.lower()
+        filename = path.name
         if 'mark' not in context.columns and candidate['is_selected']:
             return self.icon(self.opts['mark_icon'])
 
@@ -36,6 +36,7 @@ class Column(Base):
 
             return self.icon(self.opts['directory_icon'])
 
+        filename = filename.lower()
         ext = path.suffix[1:].lower()
 
         for pattern, pattern_data in self.opts['pattern_matches'].items():
