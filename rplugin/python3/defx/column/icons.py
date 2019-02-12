@@ -18,6 +18,9 @@ class Column(Base):
         self.name = 'icons'
         self.opts = self.vim.call('defx_icons#get')
 
+    def on_redraw(self, context) -> None:
+        self.add_highlight()
+
     def get(self, context: Context, candidate: dict) -> str:
         path: Path = candidate['action__path']
         filename = path.name
@@ -76,7 +79,7 @@ class Column(Base):
             self.vim.command('highlight default {0}_{1} guifg=#{2}'.format(
                 self.syntax_name, text, opts['color']))
 
-    def highlight(self) -> None:
+    def add_highlight(self) -> None:
         self.syn_item('icon_mark', 'mark_icon', 'Statement')
 
         if not self.opts['enable_syntax_highlight']:
