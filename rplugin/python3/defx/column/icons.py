@@ -32,6 +32,9 @@ class Column(Base):
             if filename in self.opts['exact_dir_matches']:
                 return self.icon(self.opts['exact_dir_matches'][filename]['icon'])
 
+            if candidate.get('is_opened', False):
+                return self.icon(self.opts['parent_icon'])
+
             if path.is_symlink():
                 return self.icon(self.opts['directory_symlink_icon'])
 
