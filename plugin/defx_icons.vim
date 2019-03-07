@@ -11,6 +11,7 @@ let s:directory_icon = get(g:, 'defx_icons_directory_icon', '')
 let s:mark_icon = get(g: , 'defx_icons_mark_icon', '*')
 let s:default_icon = get(g:, 'defx_icons_default_icon', '')
 let s:directory_symlink_icon = get(g:, 'defx_icons_directory_symlink_icon', '')
+let s:opened_tree_icon = get(g:, 'defx_icons_opened_tree_icon', '')
 
 let s:colors = {
       \ 'brown': '905532',
@@ -182,5 +183,6 @@ function! defx_icons#get() abort
         \ 'directory_symlink_icon': s:directory_symlink_icon,
         \ 'mark_icon': s:mark_icon,
         \ 'default_icon': s:default_icon,
+        \ 'opened_tree_icon': s:opened_tree_icon,
         \ }
 endfunction

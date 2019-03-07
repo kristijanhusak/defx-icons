@@ -32,8 +32,8 @@ class Column(Base):
             if filename in self.opts['exact_dir_matches']:
                 return self.icon(self.opts['exact_dir_matches'][filename]['icon'])
 
-            if candidate.get('is_opened', False):
-                return self.icon(self.opts['parent_icon'])
+            if candidate.get('is_opened_tree', False):
+                return self.icon(self.opts['opened_tree_icon'])
 
             if path.is_symlink():
                 return self.icon(self.opts['directory_symlink_icon'])
@@ -95,6 +95,7 @@ class Column(Base):
         commands += self.syn_item('directory', 'directory_icon', 'Directory')
         commands += self.syn_item('parent_directory', 'parent_icon', 'Directory')
         commands += self.syn_item('symlink_directory', 'directory_symlink_icon', 'Directory')
+        commands += self.syn_item('opened_tree_icon', 'opened_tree_icon', 'Directory')
 
         commands += self.syn_list('pattern_matches')
         commands += self.syn_list('exact_matches')

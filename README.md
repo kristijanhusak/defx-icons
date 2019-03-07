@@ -21,6 +21,7 @@ let g:defx_icons_mark_icon = '*'
 let g:defx_icons_parent_icon = ''
 let g:defx_icons_default_icon = ''
 let g:defx_icons_directory_symlink_icon = ''
+let g:defx_icons_opened_tree_icon = ''
 ```
 
 Note: Syntax highlighting can cause some performance issues in defx window. Just disable it with the `let g:defx_icons_enable_syntax_highlight = 0`
