@@ -22,6 +22,13 @@ let g:defx_icons_parent_icon = ''
 let g:defx_icons_default_icon = ''
 let g:defx_icons_directory_symlink_icon = ''
 let g:defx_icons_opened_tree_icon = ''
+
+let g:defx_icons_draw_tree_structure = 0
+
+"Options bellow are applicable only if g:defx_icons_draw_tree_structure = 1
+
+let g:defx_icons_nested_closed_tree_icon = '╰'
+let g:defx_icons_nested_opened_tree_icon = '├'
 ```
 
 Note: Syntax highlighting can cause some performance issues in defx window. Just disable it with the `let g:defx_icons_enable_syntax_highlight = 0`
