@@ -12,9 +12,8 @@ let s:mark_icon = get(g: , 'defx_icons_mark_icon', '*')
 let s:default_icon = get(g:, 'defx_icons_default_icon', '')
 let s:directory_symlink_icon = get(g:, 'defx_icons_directory_symlink_icon', '')
 let s:root_opened_tree_icon = get(g:, 'defx_icons_root_opened_tree_icon', '')
-let s:draw_tree_structure = get(g:, 'defx_icons_draw_tree_structure', 1)
-let s:nested_closed_tree_icon = get(g: ,'defx_icons_nested_closed_tree_icon', '╰')
-let s:nested_opened_tree_icon = get(g: ,'defx_icons_nested_opened_tree_icon', '├')
+let s:nested_closed_tree_icon = get(g: ,'defx_icons_nested_closed_tree_icon', '')
+let s:nested_opened_tree_icon = get(g: ,'defx_icons_nested_opened_tree_icon', '')
 
 let s:colors = {
       \ 'brown': '905532',
@@ -186,7 +185,6 @@ function! defx_icons#get() abort
         \ 'directory_symlink_icon': s:directory_symlink_icon,
         \ 'mark_icon': s:mark_icon,
         \ 'default_icon': s:default_icon,
-        \ 'draw_tree_structure': s:draw_tree_structure,
         \ 'root_opened_tree_icon': s:root_opened_tree_icon,
         \ 'nested_closed_tree_icon': s:nested_closed_tree_icon,
         \ 'nested_opened_tree_icon': s:nested_opened_tree_icon,

@@ -32,11 +32,10 @@ class Column(Base):
             if filename in self.opts['exact_dir_matches']:
                 return self.icon(self.opts['exact_dir_matches'][filename]['icon'])
 
-            if self.opts['draw_tree_structure']:
-                if candidate.get('level', 0) > 0:
-                    if candidate.get('is_opened_tree'):
-                        return self.icon(self.opts['nested_opened_tree_icon'])
-                    return self.icon(self.opts['nested_closed_tree_icon'])
+            if candidate.get('level', 0) > 0:
+                if candidate.get('is_opened_tree'):
+                    return self.icon(self.opts['nested_opened_tree_icon'])
+                return self.icon(self.opts['nested_closed_tree_icon'])
 
             if candidate.get('is_opened_tree', False):
                 return self.icon(self.opts['root_opened_tree_icon'])
