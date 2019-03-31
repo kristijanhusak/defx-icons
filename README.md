@@ -29,6 +29,13 @@ let g:defx_icons_nested_closed_tree_icon = ''
 
 Note: Syntax highlighting can cause some performance issues in defx window. Just disable it with the `let g:defx_icons_enable_syntax_highlight = 0`
 
+Note: Need to write following using xterm-256
+
+```vimL
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 2
+```
+
 ## Thanks to
 
 * [vim-devicons](https://github.com/ryanoasis/vim-devicons) for icons
