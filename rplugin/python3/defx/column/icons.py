@@ -85,8 +85,12 @@ class Column(Base):
             commands.append((
                 'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
             ).format(self.syntax_name, text, opts['icon']))
-            commands.append('highlight default {0}_{1} guifg=#{2}'.format(
-                self.syntax_name, text, opts['color']))
+            if self.vim.eval('&term') == 'xterm-256color' :
+                commands.append('highlight default {0}_{1} ctermfg={2}'.format(
+                    self.syntax_name, text, opts['color']))
+            else:
+                commands.append('highlight default {0}_{1} guifg=#{2}'.format(
+                    self.syntax_name, text, opts['color']))
         return commands
 
     def highlight_commands(self) -> typing.List[str]:

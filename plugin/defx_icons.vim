@@ -15,24 +15,45 @@ let s:root_opened_tree_icon = get(g:, 'defx_icons_root_opened_tree_icon', '')
 let s:nested_closed_tree_icon = get(g: ,'defx_icons_nested_closed_tree_icon', '')
 let s:nested_opened_tree_icon = get(g: ,'defx_icons_nested_opened_tree_icon', '')
 
-let s:colors = {
-      \ 'brown': '905532',
-      \ 'aqua': '3AFFDB',
-      \ 'blue': '689FB6',
-      \ 'darkBlue': '44788E',
-      \ 'purple': '834F79',
-      \ 'lightPurple': '834F79',
-      \ 'red': 'AE403F',
-      \ 'beige': 'F5C06F',
-      \ 'yellow': 'F09F17',
-      \ 'orange': 'D4843E',
-      \ 'darkOrange': 'F16529',
-      \ 'pink': 'CB6F6F',
-      \ 'salmon': 'EE6E73',
-      \ 'green': '8FAA54',
-      \ 'lightGreen': '31B53E',
-      \ 'white': 'FFFFFF',
-      \ }
+if &term == "xterm-256color"
+  let s:colors = {
+        \ 'brown'       : 130,
+        \ 'aqua'        : 66,
+        \ 'blue'        : 67,
+        \ 'darkBlue'    : 57,
+        \ 'purple'      : 60,
+        \ 'lightPurple' : 103,
+        \ 'red'         : 131,
+        \ 'beige'       : 137,
+        \ 'yellow'      : 229,
+        \ 'orange'      : 208,
+        \ 'darkOrange'  : 166,
+        \ 'pink'        : 205,
+        \ 'salmon'      : 209,
+        \ 'green'       : 65,
+        \ 'lightGreen'  : 108,
+        \ 'white'       : 231,
+        \ }
+else
+  let s:colors = {
+        \ 'brown': '905532',
+        \ 'aqua': '3AFFDB',
+        \ 'blue': '689FB6',
+        \ 'darkBlue': '44788E',
+        \ 'purple': '834F79',
+        \ 'lightPurple': '834F79',
+        \ 'red': 'AE403F',
+        \ 'beige': 'F5C06F',
+        \ 'yellow': 'F09F17',
+        \ 'orange': 'D4843E',
+        \ 'darkOrange': 'F16529',
+        \ 'pink': 'CB6F6F',
+        \ 'salmon': 'EE6E73',
+        \ 'green': '8FAA54',
+        \ 'lightGreen': '31B53E',
+        \ 'white': 'FFFFFF',
+        \ }
+endif
 
 let s:extensions = extend({
       \ 'styl': {'icon': '', 'color': s:colors.green},
