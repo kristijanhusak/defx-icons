@@ -132,8 +132,6 @@ let s:extensions = extend({
       \ }, get(g:, 'defx_icons_extensions', {}))
 
 let s:exact_matches = extend({
-      \ 'exact-match-case-sensitive-1.txt': {'icon': '1', 'color': s:colors.white},
-      \ 'exact-match-case-sensitive-2': {'icon': '2', 'color': s:colors.white},
       \ 'gruntfile.coffee': {'icon': '', 'color': s:colors.yellow},
       \ 'gruntfile.js': {'icon': '', 'color': s:colors.yellow},
       \ 'gruntfile.ls': {'icon': '', 'color': s:colors.yellow},
