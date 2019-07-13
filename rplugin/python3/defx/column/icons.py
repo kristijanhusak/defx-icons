@@ -85,7 +85,7 @@ class Column(Base):
             commands.append((
                 'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
             ).format(self.syntax_name, text, opts['icon']))
-            if self.vim.eval('&term') == 'xterm-256color' :
+            if self.vim.eval('has("gui_running")') == 0:
                 commands.append('highlight default {0}_{1} ctermfg={2}'.format(
                     self.syntax_name, text, opts['color']))
             else:
