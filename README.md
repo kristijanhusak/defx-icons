@@ -6,7 +6,7 @@ Custom implementation of [vim-devicons](https://github.com/ryanoasis/vim-devicon
 
 ## Usage
 ```vimL
-:Defx -columns=icons:filename:type
+:Defx -columns=icons:indent:filename:type
 ```
 This column is a replacement for mark column. It will properly highlight selected files.
 
