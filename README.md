@@ -29,6 +29,27 @@ let g:defx_icons_nested_closed_tree_icon = ''
 
 Note: Syntax highlighting can cause some performance issues in defx window. Just disable it with the `let g:defx_icons_enable_syntax_highlight = 0`
 
+
+## Override colors
+
+If you want to override some of the colors, you can do it this way:
+
+For gui:
+
+```vimL
+let g:defx_icons_gui_colors = {
+\ 'red': 'FFFFFF'
+\ }
+```
+
+For term:
+
+```vimL
+let g:defx_icons_term_colors = {
+\ 'red': 2
+\ }
+```
+
 ## Thanks to
 
 * [vim-devicons](https://github.com/ryanoasis/vim-devicons) for icons

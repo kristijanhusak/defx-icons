@@ -85,8 +85,9 @@ class Column(Base):
             commands.append((
                 'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
             ).format(self.syntax_name, text, opts['icon']))
-            commands.append('highlight default {0}_{1} guifg=#{2}'.format(
-                self.syntax_name, text, opts['color']))
+            commands.append('highlight default {0}_{1} guifg=#{2} ctermfg={3}'.format(
+                self.syntax_name, text, opts['color'], opts.get('term_color',
+                                                                'NONE')))
         return commands
 
     def highlight_commands(self) -> typing.List[str]:
