@@ -96,14 +96,14 @@ class Column(Base):
         if not self.opts['enable_syntax_highlight']:
             return commands
 
-        commands += self.syn_item('icon_mark', 'mark_icon', 'Statement')
+        commands += self.syn_item('icon_mark', 'mark_icon', 'DefxIconsMarkIcon')
 
-        commands += self.syn_item('directory', 'directory_icon', 'Directory')
-        commands += self.syn_item('parent_directory', 'parent_icon', 'Directory')
-        commands += self.syn_item('symlink_directory', 'directory_symlink_icon', 'Directory')
-        commands += self.syn_item('root_opened_tree_icon', 'root_opened_tree_icon', 'Directory')
-        commands += self.syn_item('nested_opened_tree_icon', 'nested_opened_tree_icon', 'Directory')
-        commands += self.syn_item('nested_closed_tree_icon', 'nested_closed_tree_icon', 'Directory')
+        commands += self.syn_item('directory', 'directory_icon', 'DefxIconsDirectory')
+        commands += self.syn_item('parent_directory', 'parent_icon', 'DefxIconsPDefxIconsParentDirectory')
+        commands += self.syn_item('symlink_directory', 'directory_symlink_icon', 'DefxIconsSymlinkDirectory')
+        commands += self.syn_item('root_opened_tree_icon', 'root_opened_tree_icon', 'DefxIconsOpenedTreeIcon')
+        commands += self.syn_item('nested_opened_tree_icon', 'nested_opened_tree_icon', 'DefxIconsNestedTreeIcon')
+        commands += self.syn_item('nested_closed_tree_icon', 'nested_closed_tree_icon', 'DefxIconsClosedTreeIcon')
 
         commands += self.syn_list('pattern_matches')
         commands += self.syn_list('exact_matches')

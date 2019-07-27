@@ -50,6 +50,30 @@ let g:defx_icons_term_colors = {
 \ }
 ```
 
+For directory icons these highlight groups are defined:
+
+```vimL
+hi default link DefxIconsMarkIcon Statement
+hi default link DefxIconsDirectory Directory
+hi default link DefxIconsParentDirectory Directory
+hi default link DefxIconsSymlinkDirectory Directory
+hi default link DefxIconsOpenedTreeIcon Directory
+hi default link DefxIconsNestedTreeIcon Directory
+hi default link DefxIconsClosedTreeIcon Directory
+```
+
+For example, to change color of the directory icon when it's opened in tree to red color, you would do something like this:
+
+```vimL
+hi DefxIconsOpenedTreeIcon guifg=#FF0000
+```
+
+Or link it to something else that you want:
+
+```vimL
+hi link DefxIconsOpenedTreeIcon Error
+```
+
 ## Thanks to
 
 * [vim-devicons](https://github.com/ryanoasis/vim-devicons) for icons

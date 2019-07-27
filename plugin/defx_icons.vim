@@ -189,6 +189,14 @@ let s:pattern_matches = extend({
       \ 'Vagrantfile$': {'icon': '', 'color': s:gui_colors.white, 'term_color': s:term_colors.white},
       \ }, get(g:, 'defx_icon_pattern_matches', {}))
 
+hi default link DefxIconsMarkIcon Statement
+hi default link DefxIconsDirectory Directory
+hi default link DefxIconsParentDirectory Directory
+hi default link DefxIconsSymlinkDirectory Directory
+hi default link DefxIconsOpenedTreeIcon Directory
+hi default link DefxIconsNestedTreeIcon Directory
+hi default link DefxIconsClosedTreeIcon Directory
+
 function! defx_icons#get() abort
   return {
         \ 'extensions': s:extensions,
