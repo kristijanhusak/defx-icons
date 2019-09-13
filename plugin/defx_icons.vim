@@ -68,6 +68,7 @@ let s:extensions = extend({
       \ 'rmd': {'icon': '', 'color': s:gui_colors.white, 'term_color': s:term_colors.white},
       \ 'json': {'icon': '', 'color': s:gui_colors.beige, 'term_color': s:term_colors.beige},
       \ 'js': {'icon': '', 'color': s:gui_colors.beige, 'term_color': s:term_colors.beige},
+      \ 'mjs': {'icon': '', 'color': s:gui_colors.beige, 'term_color': s:term_colors.beige},
       \ 'jsx': {'icon': '', 'color': s:gui_colors.blue, 'term_color': s:term_colors.blue},
       \ 'rb': {'icon': '', 'color': s:gui_colors.red, 'term_color': s:term_colors.red},
       \ 'php': {'icon': '', 'color': s:gui_colors.purple, 'term_color': s:term_colors.purple},
