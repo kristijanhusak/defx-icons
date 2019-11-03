@@ -84,6 +84,7 @@ let s:extensions = extend({
       \ 'yml': {'icon': '', 'color': s:gui_colors.white, 'term_color': s:term_colors.white},
       \ 'yaml': {'icon': '', 'color': s:gui_colors.white, 'term_color': s:term_colors.white},
       \ 'bat': {'icon': '', 'color': s:gui_colors.white, 'term_color': s:term_colors.white},
+      \ 'toml': {'icon': '', 'color': s:gui_colors.white, 'term_color': s:term_colors.white},
       \ 'jpg': {'icon': '', 'color': s:gui_colors.aqua, 'term_color': s:term_colors.aqua},
       \ 'jpeg': {'icon': '', 'color': s:gui_colors.aqua, 'term_color': s:term_colors.aqua},
       \ 'bmp': {'icon': '', 'color': s:gui_colors.aqua, 'term_color': s:term_colors.aqua},
