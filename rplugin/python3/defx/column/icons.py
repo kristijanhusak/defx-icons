@@ -25,6 +25,11 @@ class Column(Base):
         if 'mark' not in context.columns and candidate['is_selected']:
             return self.icon(self.opts['mark_icon'])
 
+        if context.clipboard and context.clipboard['candidates']:
+            for clipboard_candidate in context.clipboard['candidates']:
+                if str(clipboard_candidate['action__path']) == str(path):
+                    return self.clipboard_icon(context)
+
         if candidate.get('is_root', False):
             return self.icon(self.opts['parent_icon'])
 
@@ -66,6 +71,13 @@ class Column(Base):
     def icon(self, icon: str) -> str:
         return format(icon, f'<{self.opts["column_length"]}')
 
+    def clipboard_icon(self, context: Context) -> str:
+        if context.clipboard['action'] == 'ClipboardAction.COPY':
+            return self.opts['copy_icon']
+        if context.clipboard['action'] == 'ClipboardAction.MOVE':
+            return self.opts['move_icon']
+        return ''
+
     def syn_item(self, name, opt_name, hi_group_name) -> typing.List[str]:
         commands: typing.List[str] = []
         commands.append(f'silent! syntax clear {self.syntax_name}_{name}')
@@ -97,6 +109,8 @@ class Column(Base):
             return commands
 
         commands += self.syn_item('icon_mark', 'mark_icon', 'DefxIconsMarkIcon')
+        commands += self.syn_item('icon_copy', 'copy_icon', 'DefxIconsCopyIcon')
+        commands += self.syn_item('icon_move', 'move_icon', 'DefxIconsMoveIcon')
 
         commands += self.syn_item('directory', 'directory_icon', 'DefxIconsDirectory')
         commands += self.syn_item('parent_directory', 'parent_icon', 'DefxIconsParentDirectory')

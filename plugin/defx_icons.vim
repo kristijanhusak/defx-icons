@@ -14,6 +14,8 @@ let s:directory_symlink_icon = get(g:, 'defx_icons_directory_symlink_icon', '
 let s:root_opened_tree_icon = get(g:, 'defx_icons_root_opened_tree_icon', '')
 let s:nested_closed_tree_icon = get(g: ,'defx_icons_nested_closed_tree_icon', '')
 let s:nested_opened_tree_icon = get(g: ,'defx_icons_nested_opened_tree_icon', '')
+let s:copy_icon = get(g:, 'defx_icons_copy_icon', '')
+let s:move_icon = get(g:, 'defx_icons_move_icon', '')
 
 let s:gui_colors = extend({
       \ 'brown': '905532',
@@ -195,6 +197,8 @@ let s:pattern_matches = extend({
       \ }, get(g:, 'defx_icon_pattern_matches', {}))
 
 hi default link DefxIconsMarkIcon Statement
+hi default link DefxIconsCopyIcon WarningMsg
+hi default link DefxIconsMoveIcon ErrorMsg
 hi default link DefxIconsDirectory Directory
 hi default link DefxIconsParentDirectory Directory
 hi default link DefxIconsSymlinkDirectory Directory
@@ -218,5 +222,7 @@ function! defx_icons#get() abort
         \ 'root_opened_tree_icon': s:root_opened_tree_icon,
         \ 'nested_closed_tree_icon': s:nested_closed_tree_icon,
         \ 'nested_opened_tree_icon': s:nested_opened_tree_icon,
+        \ 'copy_icon': s:copy_icon,
+        \ 'move_icon': s:move_icon,
         \ }
 endfunction
