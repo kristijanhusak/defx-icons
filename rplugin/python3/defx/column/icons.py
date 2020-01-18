@@ -9,6 +9,8 @@ import typing
 from pathlib import Path
 from defx.base.column import Base
 from defx.context import Context
+from defx.clipboard import ClipboardAction
+from defx.view import View
 from neovim import Nvim
 
 
@@ -19,16 +21,24 @@ class Column(Base):
         self.name = 'icons'
         self.opts = self.vim.call('defx_icons#get')
 
+    def on_init(self, view: View, context: Context) -> None:
+        self._context = context
+        self._view = view
+
+    def on_init(self, view: View, context: Context) -> None:
+        self._context = context
+        self._view = view
+
     def get(self, context: Context, candidate: dict) -> str:
         path: Path = candidate['action__path']
         filename = path.name
         if 'mark' not in context.columns and candidate['is_selected']:
             return self.icon(self.opts['mark_icon'])
 
-        if context.clipboard and context.clipboard['candidates']:
-            for clipboard_candidate in context.clipboard['candidates']:
+        if self._view and self._view._clipboard.candidates:
+            for clipboard_candidate in self._view._clipboard.candidates:
                 if str(clipboard_candidate['action__path']) == str(path):
-                    return self.clipboard_icon(context)
+                    return self.clipboard_icon()
 
         if candidate.get('is_root', False):
             return self.icon(self.opts['parent_icon'])
@@ -71,10 +81,10 @@ class Column(Base):
     def icon(self, icon: str) -> str:
         return format(icon, f'<{self.opts["column_length"]}')
 
-    def clipboard_icon(self, context: Context) -> str:
-        if context.clipboard['action'] == 'ClipboardAction.COPY':
+    def clipboard_icon(self) -> str:
+        if  self._view._clipboard.action == ClipboardAction.COPY:
             return self.opts['copy_icon']
-        if context.clipboard['action'] == 'ClipboardAction.MOVE':
+        if self._view._clipboard.action == ClipboardAction.MOVE:
             return self.opts['move_icon']
         return ''
 
