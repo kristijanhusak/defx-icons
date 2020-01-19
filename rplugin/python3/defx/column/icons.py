@@ -25,7 +25,7 @@ class Column(Base):
         self._context = context
         self._view = view
 
-    def on_init(self, view: View, context: Context) -> None:
+    def on_redraw(self, view: View, context: Context) -> None:
         self._context = context
         self._view = view
 
