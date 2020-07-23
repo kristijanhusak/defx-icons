@@ -209,21 +209,25 @@ hi default link DefxIconsClosedTreeIcon Directory
 
 function! defx_icons#get() abort
   return {
-        \ 'extensions': s:extensions,
-        \ 'exact_matches': s:exact_matches,
-        \ 'exact_dir_matches': get(g:, 'defx_icon_exact_dir_matches', {}),
-        \ 'pattern_matches': s:pattern_matches,
-        \ 'enable_syntax_highlight': s:enable_syntax_highlight,
-        \ 'column_length': s:column_length,
-        \ 'parent_icon': s:parent_icon,
-        \ 'directory_icon': s:directory_icon,
-        \ 'directory_symlink_icon': s:directory_symlink_icon,
-        \ 'mark_icon': s:mark_icon,
-        \ 'default_icon': s:default_icon,
-        \ 'root_opened_tree_icon': s:root_opened_tree_icon,
-        \ 'nested_closed_tree_icon': s:nested_closed_tree_icon,
-        \ 'nested_opened_tree_icon': s:nested_opened_tree_icon,
-        \ 'copy_icon': s:copy_icon,
-        \ 'move_icon': s:move_icon,
+        \ 'icons': {
+        \   'extensions': s:extensions,
+        \   'exact_matches': s:exact_matches,
+        \   'pattern_matches': s:pattern_matches,
+        \   'exact_dir_matches': get(g:, 'defx_icon_exact_dir_matches', {}),
+        \   'parent_icon': s:parent_icon,
+        \   'directory_icon': s:directory_icon,
+        \   'directory_symlink_icon': s:directory_symlink_icon,
+        \   'mark_icon': s:mark_icon,
+        \   'default_icon': s:default_icon,
+        \   'root_opened_tree_icon': s:root_opened_tree_icon,
+        \   'nested_closed_tree_icon': s:nested_closed_tree_icon,
+        \   'nested_opened_tree_icon': s:nested_opened_tree_icon,
+        \   'copy_icon': s:copy_icon,
+        \   'move_icon': s:move_icon,
+        \ },
+        \ 'settings': {
+        \   'enable_syntax_highlight': s:enable_syntax_highlight,
+        \   'column_length': s:column_length,
+        \ }
         \ }
 endfunction
