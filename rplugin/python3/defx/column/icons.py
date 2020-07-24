@@ -27,20 +27,22 @@ class Column(Base):
         self.generate_highlights_map()
 
     def item_hl(self, name, hi_group) -> None:
+        icon = format(self.icons[name], f'<{self.settings["column_length"]}')
         self.highlights[name] = (
-            self.icons[name],
+            icon,
             hi_group,
-            len_bytes(self.icons[name])
+            len_bytes(icon)
         )
 
     def list_hl(self, list_name) -> None:
         self.highlights[list_name] = {}
         for name, opts in self.icons[list_name].items():
             text = re.sub('[^A-Za-z]', '', name)
+            icon = format(opts['icon'], f'<{self.settings["column_length"]}')
             self.highlights[list_name][name] = (
-                opts['icon'],
+                icon,
                 f'{self.syntax_name}_{text}',
-                len_bytes(opts['icon'])
+                len_bytes(icon)
             )
 
     def generate_highlights_map(self) -> None:
