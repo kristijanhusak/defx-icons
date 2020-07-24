@@ -138,8 +138,8 @@ class Column(Base):
 
     def syn_item(self, name, opt_name, hi_group_name, from_init = False) -> typing.List[str]:
         commands: typing.List[str] = []
-        commands.append(f'silent! syntax clear {self.syntax_name}_{name}')
         if not from_init:
+            commands.append(f'silent! syntax clear {self.syntax_name}_{name}')
             commands.append((
                 'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
             ).format(self.syntax_name, name, self.icons[opt_name]))
@@ -152,8 +152,8 @@ class Column(Base):
         commands: typing.List[str] = []
         for name, opts in self.icons[opt].items():
             text = re.sub('[^A-Za-z]', '', name)
-            commands.append(f'silent! syntax clear {self.syntax_name}_{text}')
             if not from_init:
+                commands.append(f'silent! syntax clear {self.syntax_name}_{text}')
                 commands.append((
                     'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
                 ).format(self.syntax_name, text, opts['icon']))
