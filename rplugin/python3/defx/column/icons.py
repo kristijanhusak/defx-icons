@@ -25,6 +25,9 @@ class Column(Base):
         self.settings = self.opts['settings']
         self.highlights: typing.Dict[str, typing.Any] = {}
         self.generate_highlights_map()
+        for cmd in self.highlight_commands():
+            if cmd.startswith('highlight '):
+                self.vim.command(cmd)
 
     def item_hl(self, name, hi_group) -> None:
         icon = format(self.icons[name], f'<{self.settings["column_length"]}')
@@ -65,8 +68,6 @@ class Column(Base):
     def on_init(self, view: View, context: Context) -> None:
         self._context = context
         self._view = view
-        for cmd in self.get_highlight_commands(True):
-            self.vim.command(cmd)
 
     def on_redraw(self, view: View, context: Context) -> None:
         self._context = context
@@ -138,55 +139,50 @@ class Column(Base):
             return self.icon('move_icon')
         return ''
 
-    def syn_item(self, name, opt_name, hi_group_name, from_init = False) -> typing.List[str]:
+    def syn_item(self, name, opt_name, hi_group_name) -> typing.List[str]:
         commands: typing.List[str] = []
-        if not from_init:
-            commands.append(f'silent! syntax clear {self.syntax_name}_{name}')
-            commands.append((
-                'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-            ).format(self.syntax_name, name, self.icons[opt_name]))
+        commands.append(f'silent! syntax clear {self.syntax_name}_{name}')
+        commands.append((
+            'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
+        ).format(self.syntax_name, name, self.icons[opt_name]))
         commands.append('highlight default link {0}_{1} {2}'.format(
             self.syntax_name, name, hi_group_name
         ))
         return commands
 
-    def syn_list(self, opt, from_init = False) -> typing.List[str]:
+    def syn_list(self, opt) -> typing.List[str]:
         commands: typing.List[str] = []
         for name, opts in self.icons[opt].items():
             text = re.sub('[^A-Za-z]', '', name)
-            if not from_init:
-                commands.append(f'silent! syntax clear {self.syntax_name}_{text}')
-                commands.append((
-                    'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-                ).format(self.syntax_name, text, opts['icon']))
+            commands.append(f'silent! syntax clear {self.syntax_name}_{text}')
+            commands.append((
+                'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
+            ).format(self.syntax_name, text, opts['icon']))
             commands.append('highlight default {0}_{1} guifg=#{2} ctermfg={3}'.format(
                 self.syntax_name, text, opts['color'], opts.get('term_color',
                                                                 'NONE')))
         return commands
 
     def highlight_commands(self) -> typing.List[str]:
-        return self.get_highlight_commands()
-
-    def get_highlight_commands(self, from_init = False) -> typing.List[str]:
         commands: typing.List[str] = []
 
         if not self.settings['enable_syntax_highlight']:
             return commands
 
-        commands += self.syn_item('icon_mark', 'mark_icon', 'DefxIconsMarkIcon', from_init)
-        commands += self.syn_item('icon_copy', 'copy_icon', 'DefxIconsCopyIcon', from_init)
-        commands += self.syn_item('icon_move', 'move_icon', 'DefxIconsMoveIcon', from_init)
+        commands += self.syn_item('icon_mark', 'mark_icon', 'DefxIconsMarkIcon')
+        commands += self.syn_item('icon_copy', 'copy_icon', 'DefxIconsCopyIcon')
+        commands += self.syn_item('icon_move', 'move_icon', 'DefxIconsMoveIcon')
 
-        commands += self.syn_item('directory', 'directory_icon', 'DefxIconsDirectory', from_init)
-        commands += self.syn_item('parent_directory', 'parent_icon', 'DefxIconsParentDirectory', from_init)
-        commands += self.syn_item('symlink_directory', 'directory_symlink_icon', 'DefxIconsSymlinkDirectory', from_init)
-        commands += self.syn_item('root_opened_tree_icon', 'root_opened_tree_icon', 'DefxIconsOpenedTreeIcon', from_init)
-        commands += self.syn_item('nested_opened_tree_icon', 'nested_opened_tree_icon', 'DefxIconsNestedTreeIcon', from_init)
-        commands += self.syn_item('nested_closed_tree_icon', 'nested_closed_tree_icon', 'DefxIconsClosedTreeIcon', from_init)
+        commands += self.syn_item('directory', 'directory_icon', 'DefxIconsDirectory')
+        commands += self.syn_item('parent_directory', 'parent_icon', 'DefxIconsParentDirectory')
+        commands += self.syn_item('symlink_directory', 'directory_symlink_icon', 'DefxIconsSymlinkDirectory')
+        commands += self.syn_item('root_opened_tree_icon', 'root_opened_tree_icon', 'DefxIconsOpenedTreeIcon')
+        commands += self.syn_item('nested_opened_tree_icon', 'nested_opened_tree_icon', 'DefxIconsNestedTreeIcon')
+        commands += self.syn_item('nested_closed_tree_icon', 'nested_closed_tree_icon', 'DefxIconsClosedTreeIcon')
 
-        commands += self.syn_list('pattern_matches', from_init)
-        commands += self.syn_list('exact_matches', from_init)
-        commands += self.syn_list('exact_dir_matches', from_init)
-        commands += self.syn_list('extensions', from_init)
+        commands += self.syn_list('pattern_matches')
+        commands += self.syn_list('exact_matches')
+        commands += self.syn_list('exact_dir_matches')
+        commands += self.syn_list('extensions')
 
         return commands
