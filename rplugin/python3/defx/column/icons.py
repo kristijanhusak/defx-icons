@@ -25,9 +25,6 @@ class Column(Base):
         self.settings = self.opts['settings']
         self.highlights: typing.Dict[str, typing.Any] = {}
         self.generate_highlights_map()
-        for cmd in self.highlight_commands():
-            if cmd.startswith('highlight '):
-                self.vim.command(cmd)
 
     def item_hl(self, name, hi_group) -> None:
         icon = format(self.icons[name], f'<{self.settings["column_length"]}')
@@ -44,7 +41,7 @@ class Column(Base):
             icon = format(opts['icon'], f'<{self.settings["column_length"]}')
             self.highlights[list_name][name] = (
                 icon,
-                f'{self.syntax_name}_{text}',
+                text,
                 len_bytes(icon)
             )
 
@@ -127,7 +124,10 @@ class Column(Base):
         icon = self.highlights[icon_name]
         if nested_icon_name is not None:
             icon = icon[nested_icon_name]
-        return (icon[0], [(icon[1], self.start, icon[2])])
+            hl = f'{self.syntax_name}_{icon[1]}'
+        else:
+            hl = icon[1]
+        return (icon[0], [(hl, self.start, icon[2])])
 
     def length(self, context: Context) -> int:
         return typing.cast(int, self.settings['column_length'])
