@@ -124,7 +124,7 @@ class Column(Base):
         icon = self.highlights[icon_name]
         if nested_icon_name is not None:
             icon = icon[nested_icon_name]
-            hl = f'{self.syntax_name}_{icon[1]}'
+            hl = f'{self.highlight_name}_{icon[1]}'
         else:
             hl = icon[1]
         return (icon[0], [(hl, self.start, icon[2])])
@@ -141,12 +141,13 @@ class Column(Base):
 
     def syn_item(self, name, opt_name, hi_group_name) -> typing.List[str]:
         commands: typing.List[str] = []
-        commands.append(f'silent! syntax clear {self.syntax_name}_{name}')
+        commands.append(f'silent! syntax clear {self.highlight_name}_{name}')
         commands.append((
-            'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-        ).format(self.syntax_name, name, self.icons[opt_name]))
+            'syntax match {0}_{1} /[{2}]/ contained containedin={3}'
+        ).format(self.highlight_name, name, self.icons[opt_name],
+                 self.syntax_name))
         commands.append('highlight default link {0}_{1} {2}'.format(
-            self.syntax_name, name, hi_group_name
+            self.highlight_name, name, hi_group_name
         ))
         return commands
 
@@ -154,12 +155,12 @@ class Column(Base):
         commands: typing.List[str] = []
         for name, opts in self.icons[opt].items():
             text = re.sub('[^A-Za-z]', '', name)
-            commands.append(f'silent! syntax clear {self.syntax_name}_{text}')
+            commands.append(f'silent! syntax clear {self.highlight_name}_{text}')
             commands.append((
-                'syntax match {0}_{1} /[{2}]/ contained containedin={0}'
-            ).format(self.syntax_name, text, opts['icon']))
+                'syntax match {0}_{1} /[{2}]/ contained containedin={3}'
+            ).format(self.highlight_name, text, opts['icon'], self.syntax_name))
             commands.append('highlight default {0}_{1} guifg=#{2} ctermfg={3}'.format(
-                self.syntax_name, text, opts['color'], opts.get('term_color',
+                self.highlight_name, text, opts['color'], opts.get('term_color',
                                                                 'NONE')))
         return commands
 
