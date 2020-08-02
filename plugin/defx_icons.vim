@@ -156,6 +156,23 @@ let s:extensions = extend({
       \ 'jl': {'icon': '', 'color': s:gui_colors.purple, 'term_color': s:term_colors.purple},
       \ 'pp': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
       \ 'vue': {'icon': '﵂', 'color': s:gui_colors.green, 'term_color': s:term_colors.green},
+      \ 'key': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'cs': {'icon': '', 'color': s:gui_colors.blue, 'term_color': s:term_colors.blue},
+      \ 'elm': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'f#': {'icon': '', 'color': s:gui_colors.darkBlue, 'term_color': s:term_colors.darkBlue},
+      \ 'gemspec': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'haml': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'hh': {'icon': '', 'color': s:gui_colors.blue, 'term_color': s:term_colors.blue},
+      \ 'leex': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'mdx': {'icon': '', 'color': s:gui_colors.yellow, 'term_color': s:term_colors.yellow},
+      \ 'r': {'icon': 'ﳒ', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'rake': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'rproj': {'icon': '鉶', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'swift': {'icon': '', 'color': s:gui_colors.orange, 'term_color': s:term_colors.orange},
+      \ 'tex': {'icon': 'ﭨ', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'webmanifest': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'webp': {'icon': '', 'color': s:gui_colors.aqua, 'term_color': s:term_colors.aqua},
+      \ 'xcplayground': {'icon': '', 'color': s:gui_colors.orange, 'term_color': s:term_colors.orange},
       \ }, get(g:, 'defx_icons_extensions', {}))
 
 let s:exact_matches = extend({
@@ -183,6 +200,13 @@ let s:exact_matches = extend({
       \ 'procfile': {'icon': '', 'color': s:gui_colors.purple, 'term_color': s:term_colors.purple},
       \ 'dockerfile': {'icon': '', 'color': s:gui_colors.blue, 'term_color': s:term_colors.blue},
       \ 'docker-compose.yml': {'icon': '', 'color': s:gui_colors.yellow, 'term_color': s:term_colors.yellow},
+      \ 'makefile': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'gemfile': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ '.gitlab-ci.yml': {'icon': '', 'color': s:gui_colors.orange, 'term_color': s:term_colors.orange},
+      \ 'cmakelists.txt': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'config.ru': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'mix.lock': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'rakefile': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
       \ }, get(g:, 'defx_icons_exact_matches', {}))
 
 let s:pattern_matches = extend({
