@@ -93,6 +93,8 @@ class Column(Base):
             if candidate.get('level', 0) > 0:
                 if candidate.get('is_opened_tree'):
                     return self.icon('nested_opened_tree_icon')
+                if path.is_symlink():
+                    return self.icon('directory_symlink_icon')
                 return self.icon('nested_closed_tree_icon')
 
             if candidate.get('is_opened_tree', False):
