@@ -21,6 +21,7 @@ let s:default_color = synIDattr(hlID('Normal'), 'fg')
 let s:gui_colors = extend({
       \ 'brown': '905532',
       \ 'aqua': '3AFFDB',
+      \ 'lightblue': '5fd7ff'
       \ 'blue': '689FB6',
       \ 'darkBlue': '44788E',
       \ 'purple': '834F79',
@@ -126,7 +127,7 @@ let s:extensions = extend({
       \ 'cljs': {'icon': '', 'color': s:gui_colors.green, 'term_color': s:term_colors.green},
       \ 'edn': {'icon': '', 'color': s:gui_colors.green, 'term_color': s:term_colors.green},
       \ 'scala': {'icon': '', 'color': s:gui_colors.red, 'term_color': s:term_colors.red},
-      \ 'go': {'icon': '', 'color': s:gui_colors.beige, 'term_color': s:term_colors.beige},
+      \ 'go': {'icon': '', 'color': s:gui_colors.lightblue, 'term_color': s:term_colors.lightblue},
       \ 'dart': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
       \ 'xul': {'icon': '', 'color': s:gui_colors.darkOrange, 'term_color': s:term_colors.darkOrange},
       \ 'sln': {'icon': '', 'color': s:gui_colors.purple, 'term_color': s:term_colors.purple},
