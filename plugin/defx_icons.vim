@@ -152,7 +152,7 @@ let s:extensions = extend({
       \ 'psd': {'icon': '', 'color': s:gui_colors.darkBlue, 'term_color': s:term_colors.darkBlue},
       \ 'psb': {'icon': '', 'color': s:gui_colors.darkBlue, 'term_color': s:term_colors.darkBlue},
       \ 'ts': {'icon': '', 'color': s:gui_colors.blue, 'term_color': s:term_colors.blue},
-      \ 'tsx': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
+      \ 'tsx': {'icon': '', 'color': s:gui_colors.blue, 'term_color': s:term_colors.blue},
       \ 'jl': {'icon': '', 'color': s:gui_colors.purple, 'term_color': s:term_colors.purple},
       \ 'pp': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
       \ 'vue': {'icon': '﵂', 'color': s:gui_colors.green, 'term_color': s:term_colors.green},
