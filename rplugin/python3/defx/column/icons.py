@@ -49,6 +49,7 @@ class Column(Base):
         self.item_hl('default_icon', '')
         self.item_hl('mark_icon', 'DefxIconsMarkIcon')
         self.item_hl('copy_icon', 'DefxIconsCopyIcon')
+        self.item_hl('link_icon', 'DefxIconsLinkIcon')
         self.item_hl('move_icon', 'DefxIconsMoveIcon')
         self.item_hl('directory_icon', 'DefxIconsDirectory')
         self.item_hl('parent_icon', 'DefxIconsParentDirectory')
@@ -137,6 +138,8 @@ class Column(Base):
     def clipboard_icon(self) -> str:
         if  self._view._clipboard.action == ClipboardAction.COPY:
             return self.icon('copy_icon')
+        if self._view._clipboard.action == ClipboardAction.LINK:
+            return self.icon('link_icon')
         if self._view._clipboard.action == ClipboardAction.MOVE:
             return self.icon('move_icon')
         return ''
@@ -174,6 +177,7 @@ class Column(Base):
 
         commands += self.syn_item('icon_mark', 'mark_icon', 'DefxIconsMarkIcon')
         commands += self.syn_item('icon_copy', 'copy_icon', 'DefxIconsCopyIcon')
+        commands += self.syn_item('icon_link', 'link_icon', 'DefxIconsLinkIcon')
         commands += self.syn_item('icon_move', 'move_icon', 'DefxIconsMoveIcon')
 
         commands += self.syn_item('directory', 'directory_icon', 'DefxIconsDirectory')
