@@ -174,6 +174,7 @@ let s:extensions = extend({
       \ 'webmanifest': {'icon': '', 'color': s:gui_colors.default, 'term_color': s:term_colors.default},
       \ 'webp': {'icon': '', 'color': s:gui_colors.aqua, 'term_color': s:term_colors.aqua},
       \ 'xcplayground': {'icon': '', 'color': s:gui_colors.orange, 'term_color': s:term_colors.orange},
+      \ 'svelte': {'icon': '', 'color': s:gui_colors.darkOrange, 'term_color': s:term_colors.darkOrange},
       \ }, get(g:, 'defx_icons_extensions', {}))
 
 let s:exact_matches = extend({
